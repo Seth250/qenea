@@ -1,0 +1,9 @@
+.page-footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  @include default-flex-styles;
+  height: 3.8rem;
+  background: $pry-bg;
+  color: $pry-clr;
+}

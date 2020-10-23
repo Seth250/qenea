@@ -1,14 +1,19 @@
 <template>
-	<Header />
+	<div>
+		<PageHeader />
+		<PageFooter />
+	</div>
 </template>
 
 <script>
-import Header from '../components/Header'
+import PageHeader from '../components/PageHeader'
+import PageFooter from '../components/PageFooter'
 
 export default {
 	name: 'SignUp',
 	components: {
-		Header
+		PageHeader,
+		PageFooter
 	}
 }
 </script>

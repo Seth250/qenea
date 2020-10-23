@@ -1,13 +1,17 @@
 <template>
 	<header>
 		<h1><a href="/">Qenea</a></h1>
+		<NavBar />
 	</header>
 </template>
 
 <script>
-import NavBar from './NavBar'
+import NavBar from './NavBar.vue'
 
 export default {
-	name: 'Header'
+	name: 'PageHeader',
+	components: {
+		NavBar
+	}
 }
 </script>

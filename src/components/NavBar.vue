@@ -1,8 +1,11 @@
 <template>
 	<nav>
-		<ul v-for="item in navItems">
+		<ul>
 			<li>
-				<router-link :to="#">{{ item }}</router-link>
+				<router-link to="/">Home</router-link> |
+			</li>
+			<li>
+				<router-link to="/signup">SignUp</router-link>
 			</li>
 		</ul>
 	</nav>
@@ -10,9 +13,6 @@
 
 <script>
 export default {
-	name: 'NavBar',
-	props: {
-		navItems: Array
-	}
+	name: 'NavBar'
 }
 </script>
