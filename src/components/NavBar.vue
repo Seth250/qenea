@@ -11,7 +11,7 @@
 			</template>
 			<template v-else>
 				<li>
-					<router-link to="/">Login</router-link>
+					<router-link to="/login">Login</router-link>
 				</li>
 				<li>
 					<router-link to="/signup">SignUp</router-link>

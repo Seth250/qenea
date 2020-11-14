@@ -2,7 +2,7 @@
 	<div>
 		<PageHeader />
 		<main>
-			<h2>Signup</h2>
+			<h2>Login</h2>
 		</main>
 		<PageFooter />
 	</div>
@@ -13,7 +13,7 @@ import PageHeader from '../components/PageHeader'
 import PageFooter from '../components/PageFooter'
 
 export default {
-	name: 'SignUp',
+	name: 'Login',
 	components: {
 		PageHeader,
 		PageFooter
