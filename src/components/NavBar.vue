@@ -1,5 +1,5 @@
 <template>
-	<nav>
+	<nav class="nav-bar">
 		<ul>
 			<template v-if="authenticated">
 				<li>

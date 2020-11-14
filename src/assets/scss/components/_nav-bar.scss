@@ -1,0 +1,33 @@
+.nav-bar{
+  // border: 1px solid yellow;
+
+  li{
+    // border: 1px solid green;
+    display: inline-block;
+    list-style: none;
+    margin: 0 0.75em;
+
+    a{
+      display: block;
+      padding: 0.3em;
+      position: relative;
+      // border: 1px solid blue;
+
+      &::after{
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background: #fafafa;
+        transform: scale(0);
+        transition: transform 0.4s ease;
+      }
+
+      &:hover::after{
+        transform: scale(1);
+      }
+    }
+  }
+}
