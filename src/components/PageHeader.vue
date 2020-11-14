@@ -1,7 +1,9 @@
 <template>
-	<header>
+	<header class="page-header">
 		<h1><a href="/">Qenea</a></h1>
-		<NavBar />
+		<NavBar
+			:authenticated="false"
+		/>
 	</header>
 </template>
 
