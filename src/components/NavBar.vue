@@ -1,7 +1,7 @@
 <template>
 	<nav class="nav-bar">
 		<ul>
-			<template v-if="authenticated">
+			<template v-if="loggedIn">
 				<li>
 					<router-link to="/">Home</router-link>
 				</li>
@@ -22,10 +22,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
 	name: 'NavBar',
-	props: {
-		authenticated: Boolean
-	}
+	computed: mapGetters(['loggedIn'])
 }
 </script>

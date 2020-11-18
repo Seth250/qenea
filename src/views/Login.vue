@@ -2,11 +2,14 @@
 	<div>
 		<PageHeader />
 		<main>
+			<div v-if="wrongCredentials">
+				<p>Invalid Email and/or Password</p>
+			</div>
 			<form @submit.prevent="authenticateUser">
 				<h2>Login</h2>
 				<div>
 					Email
-					<input type="email" v-model="email" required />
+					<input type="email" v-model="email" autofocus required />
 				</div>
 				<div>
 					Password
@@ -35,19 +38,26 @@ export default {
 	data() {
 		return {
 			email: '',
-			password: ''
+			password: '',
+			wrongCredentials: false
 		}
 	},
 	methods: {
 		...mapActions([
 			'loginUser'
 		]),
-		authenticateUser() {
+		async authenticateUser() {
 			const userData = {
 				username: this.email,
 				password: this.password
 			}
-			this.loginUser(userData)
+			try {
+				await this.loginUser(userData)
+				this.$router.push({ name: 'Home' })
+			} catch (err) {
+				console.log(err)
+				this.wrongCredentials = true
+			}
 		}
 	}
 }

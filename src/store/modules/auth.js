@@ -1,26 +1,29 @@
-import axios from 'axios'
+// import axios from 'axios'
+import axiosBase from '../../api'
 
 const state = {
-	accessToken: localStorage.getItem('authtoken') || null
+	authToken: localStorage.getItem('authToken') || null
 }
 
 const getters = {
-	loggedIn: (state) => state.accessToken !== null
+	loggedIn: (state) => state.authToken !== null
 }
 
 const actions = {
 	async loginUser({ commit }, credentials) {
-		try {
-			console.log(credentials)
-			const response = await axios.post('http://localhost:8000/auth/obtain-token/', credentials)
-			console.log(response.data)
-		} catch (err) {
-			console.log(err)
-		}
+		console.log(axiosBase)
+		const { data } = await axiosBase.post('auth/obtain-token/', credentials)
+		commit('updateLoginDetails', data)
 	}
 }
 
-const mutations = {}
+const mutations = {
+	updateLoginDetails(state, { token, email }) {
+		// localStorage.setItem('authToken', token)
+		// localStorage.setItem('email', email)
+		state.authToken = token
+	}
+}
 
 export default {
 	state,

@@ -1,6 +1,7 @@
 <template>
   <div class="home">
 		<PageHeader></PageHeader>
+		<main>Home Page</main>
 		<PageFooter />
   </div>
 </template>
