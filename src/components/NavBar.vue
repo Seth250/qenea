@@ -8,6 +8,9 @@
 				<li>
 					<router-link to="/">Profile</router-link>
 				</li>
+				<li>
+					<router-link :to="{name: 'Logout'}">Logout</router-link>
+				</li>
 			</template>
 			<template v-else>
 				<li>

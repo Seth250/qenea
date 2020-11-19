@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import store from '../store'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import SignUp from '../views/SignUp.vue'
@@ -23,12 +24,26 @@ const routes = [
 	{
 		path: '/signup',
 		name: 'SignUp',
-		component: SignUp
+		component: SignUp,
+		meta: {
+			requiresGuest: true
+		}
 	},
 	{
 		path: '/login',
 		name: 'Login',
-		component: Login
+		component: Login,
+		meta: {
+			requiresGuest: true
+		}
+	},
+	{
+		path: '/logout',
+		name: 'Logout',
+		component: () => import(/* webpackChunkName: "logout" */ '../views/Logout.vue'),
+		meta: {
+			requiresAuth: true
+		}
 	}
 ]
 
@@ -36,6 +51,19 @@ const router = new VueRouter({
 	mode: 'history',
 	base: process.env.BASE_URL,
 	routes
+})
+
+router.beforeEach((to, from, next) => {
+	if (to.matched.some((record) => record.meta.requiresGuest)) {
+		if (store.getters.loggedIn) {
+			next({ name: 'Home' })
+		}
+	} else if (to.matched.some((record) => record.meta.requiresAuth)) {
+		if (!store.getters.loggedIn) {
+			next()
+		}
+	}
+	next()
 })
 
 export default router

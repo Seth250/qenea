@@ -1,39 +1,50 @@
 <template>
-	<div>
-		<PageHeader />
-		<main>
-			<div v-if="wrongCredentials">
-				<p>Invalid Email and/or Password</p>
-			</div>
-			<form @submit.prevent="authenticateUser">
-				<h2>Login</h2>
-				<div>
-					Email
-					<input type="email" v-model="email" autofocus required />
-				</div>
-				<div>
+	<main>
+		<div v-if="wrongCredentials">
+			<p>Invalid Email and/or Password</p>
+		</div>
+		<form @submit.prevent="authenticateUser">
+			<h2>Login</h2>
+			<BaseFormRow>
+				<template #default>
+					Email Address
+				</template>
+				<template #input>
+					<BaseFormInput v-model="email" />
+				</template>
+			</BaseFormRow>
+
+			<BaseFormRow>
+				<template #default>
 					Password
-					<input type="password" v-model="password" required />
-				</div>
-				<div>
+				</template>
+				<template #input>
+					<BaseFormInput v-model="password" />
+					<p>
+						<a href="/">Forgot Password?</a>
+					</p>
+				</template>
+			</BaseFormRow>
+
+			<BaseFormRow>
+				<template #row>
 					<button type="submit">Login</button>
-				</div>
-			</form>
-		</main>
-		<PageFooter />
-	</div>
+				</template>
+			</BaseFormRow>
+		</form>
+	</main>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
-import PageHeader from '../components/PageHeader'
-import PageFooter from '../components/PageFooter'
+import BaseFormRow from '../components/BaseFormRow.vue'
+import BaseFormInput from '../components/BaseFormInput.vue'
 
 export default {
 	name: 'Login',
 	components: {
-		PageHeader,
-		PageFooter
+		BaseFormRow,
+		BaseFormInput
 	},
 	data() {
 		return {

@@ -11,18 +11,23 @@ const getters = {
 
 const actions = {
 	async loginUser({ commit }, credentials) {
-		console.log(axiosBase)
-		const { data } = await axiosBase.post('auth/obtain-token/', credentials)
-		commit('updateLoginDetails', data)
+		const { data } = await axiosBase.post('auth/token/login/', credentials)
+		const token = data.token
+		localStorage.setItem('authToken', token)
+		localStorage.setItem('email', data.email)
+		commit('updateAuthToken', token)
+	},
+	async logoutUser({ commit }) {
+		await axiosBase.delete('auth/token/logout')
+		localStorage.removeItem('authToken')
+		localStorage.removeItem('email')
+		commit('destroyAuthToken')
 	}
 }
 
 const mutations = {
-	updateLoginDetails(state, { token, email }) {
-		// localStorage.setItem('authToken', token)
-		// localStorage.setItem('email', email)
-		state.authToken = token
-	}
+	updateAuthToken: (state, token) => { state.authToken = token },
+	destroyAuthToken: (state) => { state.authToken = null }
 }
 
 export default {
