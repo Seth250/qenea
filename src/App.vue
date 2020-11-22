@@ -5,7 +5,9 @@
       <router-link to="/signup">SignUp</router-link>
     </div> -->
 		<PageHeader />
-    <router-view />
+		<main class="main-content">
+			<router-view />
+		</main>
 		<PageFooter />
   </div>
 </template>

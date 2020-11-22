@@ -1,7 +1,8 @@
 .page-header{
   padding: 0.75em 10%;
-  background: $pry-bg;
-  color: $pry-clr;
+  color: $scd-clr;
+  background: $pry-clr;
+  // color: $pry-clr;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,15 +11,16 @@
 
   h1{
     a{
-      border: 1px solid green;
+      // border: 1px solid green;
       display: block;
       font-size: 85%;
+      // text-shadow: 0.03rem 0.05rem 0.1rem $dft-shadow-clr;
+      text-shadow: 0.03rem 0.03rem 0.05rem $dft-shadow-clr;
     }
-    border: 1px solid black;
     // display: inline-block;
   }
 
-  a{
+  // a{
     // border: 1px solid green;
     // color: inherit;
     // display: block;
@@ -26,8 +28,7 @@
     // // text-transform: uppercase;
     // font-size: 80%;
     // // letter-spacing: 0.01em;
-    // text-shadow: 0.03rem 0.05rem 0.1rem $dft-shadow-clr;
-  }
+  // }
 }
 
 // @media only screen and (max-width: 768px){

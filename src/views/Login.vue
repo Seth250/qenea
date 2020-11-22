@@ -1,48 +1,46 @@
 <template>
-	<main>
-		<div v-if="wrongCredentials">
+	<div class="container">
+		<div class="message" v-if="wrongCredentials">
 			<p>Invalid Email and/or Password</p>
 		</div>
-		<form @submit.prevent="authenticateUser">
-			<h2>Login</h2>
-			<BaseFormRow>
-				<template #default>
-					Email Address
-				</template>
-				<template #input>
-					<BaseFormInput v-model="email" />
-				</template>
-			</BaseFormRow>
+		<h2>Login</h2>
+		<BaseForm :formFunction="authenticateUser">
+			<template #form-data>
+				<BaseFormRow>
+					<template #label> Email Address </template>
+					<template #input>
+						<BaseFormInput inputType="email" v-model="email" inputId="id_email" />
+					</template>
+				</BaseFormRow>
 
-			<BaseFormRow>
-				<template #default>
-					Password
-				</template>
-				<template #input>
-					<BaseFormInput v-model="password" />
-					<p>
-						<a href="/">Forgot Password?</a>
-					</p>
-				</template>
-			</BaseFormRow>
+				<BaseFormRow>
+					<template #label> Password </template>
+					<template #input>
+						<BaseFormInput inputType="password" v-model="password" />
+						<p>
+							<a href="/">Forgot Password?</a>
+						</p>
+					</template>
+				</BaseFormRow>
+			</template>
 
-			<BaseFormRow>
-				<template #row>
-					<button type="submit">Login</button>
-				</template>
-			</BaseFormRow>
-		</form>
-	</main>
+			<template #form-message>
+				Don't have an Account? <router-link :to="{ name: 'SignUp' }">Signup here</router-link>
+			</template>
+		</BaseForm>
+	</div>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
+import BaseForm from '../components/BaseForm.vue'
 import BaseFormRow from '../components/BaseFormRow.vue'
 import BaseFormInput from '../components/BaseFormInput.vue'
 
 export default {
 	name: 'Login',
 	components: {
+		BaseForm,
 		BaseFormRow,
 		BaseFormInput
 	},
@@ -64,7 +62,7 @@ export default {
 			}
 			try {
 				await this.loginUser(userData)
-				this.$router.push({ name: 'Home' })
+				this.$router.push({ name: 'Profile', params: { username: 'seth250' } })
 			} catch (err) {
 				console.log(err)
 				this.wrongCredentials = true

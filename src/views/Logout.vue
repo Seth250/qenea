@@ -7,8 +7,9 @@
 <script>
 export default {
 	name: 'Logout',
-	created() {
-		console.log('User is logged out')
+	async created() {
+		await this.$store.dispatch('logoutUser')
+		this.$router.push({ name: 'Login' })
 	}
 }
 </script>

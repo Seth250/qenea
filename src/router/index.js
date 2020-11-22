@@ -40,7 +40,12 @@ const routes = [
 	{
 		path: '/logout',
 		name: 'Logout',
-		component: () => import(/* webpackChunkName: "logout" */ '../views/Logout.vue'),
+		component: () => import(/* webpackChunkName: "logout" */ '../views/Logout.vue')
+	},
+	{
+		path: '/:username',
+		name: 'Profile',
+		component: () => import(/* webpackChunkName: "profile" */ '../views/Profile.vue'),
 		meta: {
 			requiresAuth: true
 		}
@@ -54,16 +59,23 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-	if (to.matched.some((record) => record.meta.requiresGuest)) {
+	if (to.matched.some((record) => record.meta.requiresAuth)) {
 		if (store.getters.loggedIn) {
-			next({ name: 'Home' })
-		}
-	} else if (to.matched.some((record) => record.meta.requiresAuth)) {
-		if (!store.getters.loggedIn) {
 			next()
+		} else {
+			next({ name: 'Login' })
 		}
+	} else if (to.matched.some((record) => record.meta.requiresGuest)) {
+		if (store.getters.loggedIn) {
+			next()
+			console.log('loggedIn')
+		} else {
+			next()
+			console.log('not logged In')
+		}
+	} else {
+		next()
 	}
-	next()
 })
 
 export default router

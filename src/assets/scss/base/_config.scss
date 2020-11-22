@@ -1,7 +1,8 @@
 $font-stack: 'Roboto', sans-serif;
 $pry-clr: #fafafa;
-$pry-bg: #0a5eb1;
+$scd-clr: #0a5eb1;
 $dft-shadow-clr: rgba(0, 0, 0, 0.7);
+$footer-height: 3.9rem;
 
 @mixin default-flex-styles{
   display: flex;

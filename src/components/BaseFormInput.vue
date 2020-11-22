@@ -1,7 +1,8 @@
 <template>
 	<input
-		type="text"
-		value="value"
+		:type="inputType"
+		:value="value"
+		:id="inputId"
 		@input="$emit('input', $event.target.value)"
 		class=""
 		required
@@ -12,7 +13,18 @@
 export default {
 	name: 'BaseFormInput',
 	props: {
-		value: String
+		inputType: {
+			type: String,
+			required: true
+		},
+		value: {
+			type: String,
+			required: true
+		},
+		inputId: {
+			type: String,
+			required: false
+		}
 	}
 }
 </script>

@@ -18,7 +18,8 @@ const actions = {
 		commit('updateAuthToken', token)
 	},
 	async logoutUser({ commit }) {
-		await axiosBase.delete('auth/token/logout')
+		// axiosBase.defaults.headers.common.Authorization = `Token ${state.authToken}`
+		// await axiosBase.post('auth/token/logout/')
 		localStorage.removeItem('authToken')
 		localStorage.removeItem('email')
 		commit('destroyAuthToken')

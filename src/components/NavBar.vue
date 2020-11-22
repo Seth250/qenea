@@ -1,15 +1,17 @@
 <template>
 	<nav class="nav-bar">
-		<ul>
+		<ul class="nav-bar__items">
 			<template v-if="loggedIn">
 				<li>
-					<router-link to="/">Home</router-link>
+					<router-link :to="{ name: 'Home' }">Home</router-link>
 				</li>
 				<li>
-					<router-link to="/">Profile</router-link>
+					<router-link :to="{ name: 'Profile', params: { username: 'Seth250' } }">
+						Profile
+					</router-link>
 				</li>
 				<li>
-					<router-link :to="{name: 'Logout'}">Logout</router-link>
+					<router-link :to="{ name: 'Logout' }">Logout</router-link>
 				</li>
 			</template>
 			<template v-else>
@@ -21,6 +23,11 @@
 				</li>
 			</template>
 		</ul>
+		<div class="nav-bar__hamburger">
+			<div class="block-1"></div>
+			<div class="block-1"></div>
+			<div class="block-1"></div>
+		</div>
 	</nav>
 </template>
 

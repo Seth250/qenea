@@ -1,0 +1,13 @@
+#app {
+  background: $pry-clr;
+  min-height: 100vh;
+  position: relative;
+}
+
+.main-content{
+  border: 1px solid green;
+  padding-top: 2.5em;
+  padding-bottom: 2.5rem + $footer-height;
+  @include default-flex-styles;
+  // flex-direction: column;
+}

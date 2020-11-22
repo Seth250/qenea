@@ -1,8 +1,8 @@
 <template>
-	<div>
-		<slot name="row">
+	<div class="form-row">
+		<slot>
 			<label>
-				<slot></slot>
+				<slot name="label"></slot>
 			</label>
 			<slot name="input"></slot>
 		</slot>
