@@ -6,7 +6,7 @@
 					<router-link :to="{ name: 'Home' }">Home</router-link>
 				</li>
 				<li>
-					<router-link :to="{ name: 'Profile', params: { username: 'Seth250' } }">
+					<router-link :to="{ name: 'Profile', params: { username } }">
 						Profile
 					</router-link>
 				</li>
@@ -32,10 +32,15 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 
 export default {
 	name: 'NavBar',
-	computed: mapGetters(['loggedIn'])
+	computed: {
+		...mapGetters(['loggedIn']),
+		...mapState({
+			username: (state) => state.auth.username
+		})
+	}
 }
 </script>

@@ -2,7 +2,8 @@
 import axiosBase from '../../api'
 
 const state = {
-	authToken: localStorage.getItem('authToken') || null
+	authToken: localStorage.getItem('authToken') || null,
+	username: localStorage.getItem('username') || null
 }
 
 const getters = {
@@ -10,32 +11,34 @@ const getters = {
 }
 
 const actions = {
-	async createUser(context, userData) {
-		const { data } = await axiosBase.post('auth/signup/', userData)
-		console.log(data)
-	},
 	async loginUser({ commit }, credentials) {
 		const { data } = await axiosBase.post('auth/token/login/', credentials)
-		const token = data.token
-		localStorage.setItem('authToken', token)
-		localStorage.setItem('email', data.email)
-		commit('updateAuthToken', token)
+		localStorage.setItem('authToken', data.token)
+		localStorage.setItem('username', data.username)
+		commit('updateAuthDetails', data)
 	},
 	async logoutUser({ commit }) {
 		// axiosBase.defaults.headers.common.Authorization = `Token ${state.authToken}`
 		// await axiosBase.post('auth/token/logout/')
 		localStorage.removeItem('authToken')
-		localStorage.removeItem('email')
-		commit('destroyAuthToken')
+		localStorage.removeItem('username')
+		commit('destroyAuthDetails')
 	}
 }
 
 const mutations = {
-	updateAuthToken: (state, token) => { state.authToken = token },
-	destroyAuthToken: (state) => { state.authToken = null }
+	updateAuthDetails: (state, data) => {
+		state.authToken = data.token
+		state.username = data.username
+	},
+	destroyAuthDetails: (state) => {
+		state.authToken = null
+		state.username = null
+	}
 }
 
 export default {
+	// namespaced: true,
 	state,
 	getters,
 	actions,

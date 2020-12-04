@@ -40,7 +40,10 @@ const routes = [
 	{
 		path: '/logout',
 		name: 'Logout',
-		component: () => import(/* webpackChunkName: "logout" */ '../views/Logout.vue')
+		component: () => import(/* webpackChunkName: "logout" */ '../views/Logout.vue'),
+		meta: {
+			requiresAuth: true
+		}
 	},
 	{
 		path: '/:username',
@@ -60,22 +63,15 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
 	if (to.matched.some((record) => record.meta.requiresAuth)) {
-		if (store.getters.loggedIn) {
-			next()
-		} else {
+		if (!store.getters.loggedIn) {
 			next({ name: 'Login' })
 		}
 	} else if (to.matched.some((record) => record.meta.requiresGuest)) {
 		if (store.getters.loggedIn) {
-			next()
-			console.log('loggedIn')
-		} else {
-			next()
-			console.log('not logged In')
+			next({ name: 'Home' })
 		}
-	} else {
-		next()
 	}
+	next()
 })
 
 export default router

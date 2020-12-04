@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import axiosBase from '../api'
 import BaseForm from '../components/BaseForm.vue'
 import BaseFormRow from '../components/BaseFormRow.vue'
 import BaseFormInput from '../components/BaseFormInput.vue'
@@ -88,12 +88,9 @@ export default {
 		}
 	},
 	methods: {
-		...mapActions([
-			'createUser'
-		]),
 		async registerUser() {
 			try {
-				await this.createUser(this.formData)
+				await axiosBase.post('auth/signup/', this.formData)
 				this.$router.push({ name: 'Login' })
 			} catch (err) {
 				if (err.response) {
