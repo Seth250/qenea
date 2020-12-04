@@ -10,6 +10,10 @@ const getters = {
 }
 
 const actions = {
+	async createUser(context, userData) {
+		const { data } = await axiosBase.post('auth/signup/', userData)
+		console.log(data)
+	},
 	async loginUser({ commit }, credentials) {
 		const { data } = await axiosBase.post('auth/token/login/', credentials)
 		const token = data.token

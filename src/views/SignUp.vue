@@ -1,47 +1,53 @@
 <template>
 	<div class="container">
-		<h2>SignUp</h2>
-		<BaseForm :formFunction="authenticateUser">
+		<BaseForm :formFunction="registerUser">
+			<template #form-header> SignUp </template>
+
 			<template #form-data>
 				<BaseFormRow>
 					<template #label> First Name </template>
-					<template #input>
-						<BaseFormInput inputType="text" v-model="firstName" />
+					<template #field>
+						<BaseFormInput inputType="text" v-model="formData.first_name" />
+						<FormFieldError :fieldErrors="formErrors.first_name" />
 					</template>
 				</BaseFormRow>
 
 				<BaseFormRow>
 					<template #label> Last Name </template>
-					<template #input>
-						<BaseFormInput inputType="text" v-model="lastName" />
+					<template #field>
+						<BaseFormInput inputType="text" v-model="formData.last_name" />
+						<FormFieldError :fieldErrors="formErrors.last_name" />
 					</template>
 				</BaseFormRow>
 
 				<BaseFormRow>
 					<template #label> Email Address </template>
-					<template #input>
-						<BaseFormInput inputType="email" v-model="email" />
+					<template #field>
+						<BaseFormInput inputType="email" v-model="formData.email" />
+						<FormFieldError :fieldErrors="formErrors.email" />
 					</template>
 				</BaseFormRow>
 
 				<BaseFormRow>
 					<template #label>	Username </template>
-					<template #input>
-						<BaseFormInput inputType="text" v-model="username" />
+					<template #field>
+						<BaseFormInput inputType="text" v-model="formData.username" />
+						<FormFieldError :fieldErrors="formErrors.username" />
 					</template>
 				</BaseFormRow>
 
 				<BaseFormRow>
 					<template #label>	Password </template>
-					<template #input>
-						<BaseFormInput inputType="password" v-model="password" />
+					<template #field>
+						<BaseFormInput inputType="password" v-model="formData.password" />
 					</template>
 				</BaseFormRow>
 
 				<BaseFormRow>
 					<template #label>	Confirm Password </template>
-					<template #input>
-						<BaseFormInput inputType="password" v-model="password2" />
+					<template #field>
+						<BaseFormInput inputType="password" v-model="formData.password2" />
+						<FormFieldError :fieldErrors="formErrors.password2" />
 					</template>
 				</BaseFormRow>
 			</template>
@@ -54,27 +60,46 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import BaseForm from '../components/BaseForm.vue'
 import BaseFormRow from '../components/BaseFormRow.vue'
 import BaseFormInput from '../components/BaseFormInput.vue'
+import FormFieldError from '../components/FormFieldError.vue'
 
 export default {
 	name: 'SignUp',
 	components: {
 		BaseForm,
 		BaseFormRow,
-		BaseFormInput
+		BaseFormInput,
+		FormFieldError
 	},
 	data() {
 		return {
-			// formData: {
-			firstName: '',
-			lastName: '',
-			email: '',
-			username: '',
-			password: '',
-			password2: ''
-			// }
+			formData: {
+				first_name: '',
+				last_name: '',
+				email: '',
+				username: '',
+				password: '',
+				password2: ''
+			},
+			formErrors: {}
+		}
+	},
+	methods: {
+		...mapActions([
+			'createUser'
+		]),
+		async registerUser() {
+			try {
+				await this.createUser(this.formData)
+				this.$router.push({ name: 'Login' })
+			} catch (err) {
+				if (err.response) {
+					this.formErrors = err.response.data
+				}
+			}
 		}
 	}
 }

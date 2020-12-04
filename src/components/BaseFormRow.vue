@@ -4,7 +4,7 @@
 			<label>
 				<slot name="label"></slot>
 			</label>
-			<slot name="input"></slot>
+			<slot name="field"></slot>
 		</slot>
 	</div>
 </template>
