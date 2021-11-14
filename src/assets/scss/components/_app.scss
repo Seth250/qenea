@@ -1,0 +1,12 @@
+#app {
+  background-color: $pry-bg;
+  min-height: 100vh;
+  position: relative;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3.5em;
+}
