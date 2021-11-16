@@ -1,5 +1,5 @@
 <template>
-  <BaseForm :formFunc="registerUser">
+  <BaseForm :formFunc="createUser">
     <template #form-header>Sign Up</template>
 
     <template #form-data>
@@ -7,13 +7,13 @@
         <FormRow>
           <template #label>First Name</template>
           <template #input>
-            <FormInput v-model="formData.first_name" required autofocus />
+            <FormInput name="firstname" v-model="formData.first_name" required />
           </template>
         </FormRow>
         <FormRow>
           <template #label>Last Name</template>
           <template #input>
-            <FormInput v-model="formData.last_name" required />
+            <FormInput name="lastname" v-model="formData.last_name" required />
           </template>
         </FormRow>
       </FormRow>
@@ -21,28 +21,28 @@
       <FormRow>
         <template #label>Email Address</template>
         <template #input>
-          <FormInput inputType="email" v-model="formData.email" required />
+          <FormInput name="email" inputType="email" v-model="formData.email" required />
         </template>
       </FormRow>
 
       <FormRow>
         <template #label>Username</template>
         <template #input>
-          <FormInput v-model="formData.username" required />
+          <FormInput name="username" v-model="formData.username" required />
         </template>
       </FormRow>
 
       <FormRow>
         <template #label>Password</template>
         <template #input>
-          <FormInput inputType="password" v-model="formData.password" required />
+          <FormInput name="password" inputType="password" v-model="formData.password" required />
         </template>
       </FormRow>
 
       <FormRow>
         <template #label>Confirm Password</template>
         <template #input>
-          <FormInput inputType="password" v-model="formData.password2" required />
+          <FormInput name="password2" inputType="password" v-model="formData.password2" required />
         </template>
       </FormRow>
     </template>
@@ -60,6 +60,7 @@
 import BaseForm from '@/components/BaseForm.vue'
 import FormRow from '@/components/FormRow.vue'
 import FormInput from '@/components/FormInput.vue'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'Login',
@@ -77,12 +78,21 @@ export default {
         username: '',
         password: '',
         password2: ''
-      }
+      },
+      formErrors: {}
     }
   },
   methods: {
-    registerUser () {
-      console.log(this.formData)
+    ...mapActions(['registerUser']),
+    async createUser () {
+      try {
+        await this.registerUser(this.formData)
+        this.$router.push({ name: 'Login' })
+      } catch (err) {
+        if (err.response) {
+          this.formErrors = err.response.data
+        }
+      }
     }
   }
 }

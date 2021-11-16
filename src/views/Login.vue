@@ -1,19 +1,19 @@
 <template>
-  <BaseForm :formFunc="loginUser">
+  <BaseForm :formFunc="authenticateUser">
     <template #form-header>Login</template>
 
     <template #form-data>
       <FormRow>
         <template #label>Email Address</template>
         <template #input>
-          <FormInput inputType="email" v-model="formData.email" required />
+          <FormInput name="email" inputType="email" v-model="formData.email" required />
         </template>
       </FormRow>
 
       <FormRow>
         <template #label>Password</template>
         <template #input>
-          <FormInput inputType="password" v-model="formData.password" required />
+          <FormInput name="password" inputType="password" v-model="formData.password" required />
           <p>
             <a class="form__link" href="#">Forgot Password?</a>
           </p>
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import BaseForm from '@/components/BaseForm.vue'
 import FormRow from '@/components/FormRow.vue'
 import FormInput from '@/components/FormInput.vue'
@@ -51,8 +52,14 @@ export default {
     }
   },
   methods: {
-    loginUser () {
-      console.log(this.formData)
+    ...mapActions(['loginUser']),
+    async authenticateUser () {
+      try {
+        await this.loginUser(this.formData)
+        this.$router.push({ name: 'Home' })
+      } catch (err) {
+        console.log(err)
+      }
     }
   }
 }
