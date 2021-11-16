@@ -1,6 +1,7 @@
 <template>
   <div class="form__input-container">
     <input
+      :name="name"
       :type="inputType"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
@@ -15,6 +16,10 @@
 export default {
   name: 'FormInput',
   props: {
+    name: {
+      type: String,
+      required: false
+    },
     inputType: {
       type: String,
       default: 'text'
