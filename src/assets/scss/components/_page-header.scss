@@ -1,9 +1,8 @@
 .header {
   padding: 1em 5%;
-  background-color: $pry-clr;
   color: $sec-clr;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0rem 0.05rem 0.2rem 0 rgba(0, 0, 0, .6);
+  border-bottom: 1px solid lightgrey;
 }

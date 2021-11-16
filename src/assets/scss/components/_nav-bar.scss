@@ -16,7 +16,7 @@
     position: relative;
 
     &:hover {
-      color: #013263;
+      color: $sec-hover-clr;
     }
 
     &::after {
