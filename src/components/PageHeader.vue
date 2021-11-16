@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <h1>
-      <a href="/">Qenea</a>
+      <router-link :to="{ name: 'Home' }">Qenea</router-link>
     </h1>
     <NavBar />
   </header>
