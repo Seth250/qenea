@@ -1,9 +1,9 @@
 <template>
   <div class="form-container">
     <div class="form-header">
-      <h2>
+      <p>
         <slot name="form-header"></slot>
-      </h2>
+      </p>
     </div>
     <form class="form" @submit.prevent="formFunc">
       <slot name="form-data"></slot>
