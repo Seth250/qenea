@@ -1,6 +1,6 @@
 <template>
   <BaseForm :formFunc="createUser">
-    <template #form-header>Sign Up</template>
+    <template #form-header>Create an account</template>
 
     <template #form-data>
       <FormRow :is-grid-row="true">

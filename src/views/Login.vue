@@ -1,6 +1,6 @@
 <template>
   <BaseForm :formFunc="authenticateUser">
-    <template #form-header>Login</template>
+    <template #form-header>Login to your account</template>
 
     <template #form-data>
       <FormRow>
