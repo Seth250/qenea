@@ -1,7 +1,11 @@
 <template>
   <PageHeader />
   <main class="main">
-    <router-view />
+    <router-view v-slot="{ Component }">
+      <transition name="slide" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </main>
 </template>
 

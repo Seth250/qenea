@@ -8,5 +8,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 3.5em;
+  padding: 3.25em 0;
+}
+
+.slide-enter-active {
+  transition: all 0.3s ease-in,
+}
+
+.slide-leave-active {
+  transition: all 0.4s ease-out;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateX(-15%);
+  opacity: 0;
 }
