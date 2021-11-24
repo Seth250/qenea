@@ -12,17 +12,16 @@
     </div>
     <div class="question-item__col-2">
       <div class="question-item__title">
-        <router-link to="#">{{ title }}</router-link>
+        <router-link :to="{ name: 'QuestionDetail', params: { slug } }">{{ title }}</router-link>
       </div>
       <div class="question-item__description">
         <p>{{ description }}</p>
       </div>
       <div class="question-item__bottom">
         <div>
-          <a class="question-tag" href="#">python</a>
-          <a class="question-tag" href="#">django</a>
-          <a class="question-tag" href="#">vue</a>
-          <a class="question-tag" href="#">vuex</a>
+          <a class="question-tag" href="#" v-for="(tag, index) in tags" :key="index">
+            {{ tag }}
+          </a>
         </div>
         <div>
           <div></div>
@@ -44,6 +43,10 @@ export default {
       type: String,
       required: true
     },
+    slug: {
+      type: String,
+      required: true
+    },
     description: {
       type: String,
       required: true
@@ -59,6 +62,10 @@ export default {
     askedBy: {
       type: String,
       required: true
+    },
+    tags: {
+      type: Array,
+      default: () => ['python', 'django', 'backend']
     }
   }
 }
