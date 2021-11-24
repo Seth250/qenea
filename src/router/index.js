@@ -32,8 +32,10 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresGuest)) {
-    if (store.getters.loggedIn) {
+    if (store.getters.isLoggedIn) {
       next({ name: 'Home' })
+    } else {
+      next()
     }
   } else {
     next()

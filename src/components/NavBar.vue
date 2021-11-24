@@ -1,6 +1,6 @@
 <template>
   <nav class="nav-bar">
-    <template v-if="loggedIn">
+    <template v-if="isLoggedIn">
       <ul class="nav-bar__items">
         <li>
           <router-link class="nav-bar__link" to="#">Home</router-link>
@@ -32,6 +32,6 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'NavBar',
-  computed: mapGetters(['loggedIn'])
+  computed: mapGetters(['isLoggedIn'])
 }
 </script>

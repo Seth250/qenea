@@ -1,4 +1,4 @@
-import axiosBase from '../../api'
+import axiosBase from '@/api'
 
 const state = {
   authToken: localStorage.getItem('authToken') || null,
@@ -6,7 +6,7 @@ const state = {
 }
 
 const getters = {
-  loggedIn: (state) => state.authToken != null
+  isLoggedIn: state => state.authToken != null
 }
 
 const actions = {
@@ -17,7 +17,6 @@ const actions = {
 
   async loginUser ({ commit }, credentials) {
     const { data } = await axiosBase.post('auth/token/login/', credentials)
-    console.log(data)
     localStorage.setItem('authToken', data.auth_token)
     localStorage.setItem('email', data.email)
     commit('updateAuthDetails', data)
