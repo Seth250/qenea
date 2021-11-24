@@ -6,6 +6,7 @@
   border-radius: 0.35rem;
   padding: 2.25em;
   background-color: $pry-clr;
+  margin-top: 2em;
 }
 
 .form-header {
@@ -63,11 +64,22 @@
     }
   }
 
+  &__error-list {
+    // border: 1px solid green;
+    margin-top: 0.375em;
+    color: $error-clr;
+
+    li {
+      list-style-type: none;
+    }
+  }
+
   &__btn {
     border: 1px solid transparent;
     cursor: pointer;
     color: $pry-clr;
     background-color: $sec-clr;
+    font-weight: 500;
     // text-transform: uppercase;
     box-shadow: 0 0 0.05em 0 $pry-shadow-clr;
     transition: background-color 0.25s ease-in;

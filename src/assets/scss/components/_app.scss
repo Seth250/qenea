@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3.25em 0;
+  padding: 2em 0;
 }
 
 .slide-enter-active {
@@ -23,4 +23,39 @@
 .slide-leave-to {
   transform: translateX(-15%);
   opacity: 0;
+}
+
+.create-box {
+  display: grid;
+  justify-content: flex-end;
+  margin-bottom: 0.75em;
+
+  &__link {
+    @include flex-center;
+    padding: 0.6em 1em;
+    border: 1px solid transparent;
+    border-radius: 0.325em;
+    color: #fafafa;
+    background-color: #0b5ebd;
+    box-shadow: 0.01em 0.02em 0.05em 0 $pry-shadow-clr;
+    transition: all 0.3s ease-in;
+
+    &:hover {
+      color: $pry-clr;
+      background-color: #0254b1;
+    }
+  }
+
+  &__icon {
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5em;
+    margin-bottom: 0.1em;
+    fill: currentColor;
+    stroke: currentColor;
+  }
+
+  &__text {
+    font-size: 95%;
+  }
 }
