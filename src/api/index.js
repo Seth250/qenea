@@ -35,7 +35,7 @@ instance.interceptors.response.use(
   },
   error => {
     hideLoader()
-    Promise.reject(error)
+    return Promise.reject(error)
   }
 )
 
