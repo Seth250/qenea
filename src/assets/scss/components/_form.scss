@@ -2,10 +2,10 @@
   // border: 2px solid black;
   width: 92%;
   max-width: 39em;
-  box-shadow: 0em 0em 0.1em 0 $pry-shadow-clr;
+  box-shadow: 0em 0em 0.075em 0 $pry-shadow-clr;
   border-radius: 0.35rem;
   padding: 2.25em;
-  background-color: $pry-clr;
+  background-color: $pry-white;
   margin-top: 2em;
 }
 
@@ -77,20 +77,20 @@
   &__btn {
     border: 1px solid transparent;
     cursor: pointer;
-    color: $pry-clr;
-    background-color: $sec-clr;
+    color: $pry-white;
+    background-color: $pry-blue;
     font-weight: 500;
     // text-transform: uppercase;
     box-shadow: 0 0 0.05em 0 $pry-shadow-clr;
     transition: background-color 0.25s ease-in;
 
     &:hover {
-      background-color: $sec-hover-clr;
+      background-color: $sec-blue;
     }
   }
 
   &__link {
-    color: $sec-clr;
+    color: $pry-blue;
     font-weight: 500;
   }
 

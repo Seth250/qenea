@@ -1,5 +1,5 @@
 #app {
-  background-color: $pry-bg;
+  background-color: $sec-white;
   min-height: 100vh;
   position: relative;
 }
@@ -12,11 +12,13 @@
 }
 
 .slide-enter-active {
-  transition: all 0.3s ease-in,
+  transition: all 0.3s ease-in;
+  box-shadow: inherit;
 }
 
 .slide-leave-active {
   transition: all 0.4s ease-out;
+  box-shadow: inherit;
 }
 
 .slide-enter-from,
@@ -41,8 +43,9 @@
     transition: all 0.3s ease-in;
 
     &:hover {
-      color: $pry-clr;
-      background-color: #0254b1;
+      color: $pry-white;
+      // background-color: #0254b1;
+      background-color: $sec-blue;
     }
   }
 
