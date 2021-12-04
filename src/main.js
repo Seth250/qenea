@@ -16,6 +16,9 @@ app.use(VueLoading, {
   color: '#222'
 })
 
-app.mount('#app')
+// ensuring the app is mounted after the router is initialized (to prevent transition on page load)
+router.isReady().then(() => {
+  app.mount('#app')
+})
 
 export default app
