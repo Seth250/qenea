@@ -1,8 +1,7 @@
 .form-container {
-  // border: 2px solid black;
   width: 92%;
   max-width: 39em;
-  box-shadow: 0em 0em 0.075em 0 $pry-shadow-clr;
+  box-shadow: 0.02em 0.03em 0.125em 0 $pry-shadow-clr;
   border-radius: 0.35rem;
   padding: 2.25em;
   background-color: $pry-white;
@@ -43,13 +42,10 @@
     letter-spacing: 0.01em;
   }
 
-  // &__input-container {
-  // }
-
   &__input,
   &__btn {
     width: 100%;
-    padding: 0.75em 0.6em;
+    padding: 0.75em 0.65em;
     border-radius: 0.35em;
     font-size: inherit;
   }
@@ -60,17 +56,27 @@
     &:focus {
       outline: none;
       border-color: transparent;
-      box-shadow: 0 0 0 0.1em rgba(14, 108, 185, 0.6);
+      box-shadow: 0 0 0 0.08em $focus-blue;
+    }
+
+    &--error {
+      border-color: transparent;
+      box-shadow: 0 0 0 0.085em $error-shadow-clr;
+
+      &:focus {
+        box-shadow: 0 0 0 0.085em $error-shadow-clr;
+      }
     }
   }
 
   &__error-list {
     // border: 1px solid green;
     margin-top: 0.375em;
-    color: $error-clr;
+    color: $error-text-clr;
 
     li {
       list-style-type: none;
+      font-size: 0.875em;
     }
   }
 

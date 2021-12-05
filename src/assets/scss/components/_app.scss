@@ -11,19 +11,18 @@
   padding: 2em 0;
 }
 
+// correct approach for transitions is ease-in for exits and ease-out for entraces (seems odd, I know)
 .slide-enter-active {
-  transition: all 0.3s ease-in;
-  box-shadow: inherit;
+  transition: all 0.25s ease-out;
 }
 
 .slide-leave-active {
-  transition: all 0.4s ease-out;
-  box-shadow: inherit;
+  transition: all 0.4s ease-in;
 }
 
 .slide-enter-from,
 .slide-leave-to {
-  transform: translateX(-15%);
+  transform: translateX(-16.5%);
   opacity: 0;
 }
 
@@ -38,27 +37,20 @@
     border: 1px solid transparent;
     border-radius: 0.325em;
     color: #fafafa;
-    background-color: #0b5ebd;
+    // background-color: #0b5ebd;
+    background-color: $pry-blue;
     box-shadow: 0.01em 0.02em 0.05em 0 $pry-shadow-clr;
-    transition: all 0.3s ease-in;
+    transition: all 0.25s ease-in;
 
     &:hover {
       color: $pry-white;
-      // background-color: #0254b1;
       background-color: $sec-blue;
     }
   }
 
   &__icon {
     width: 1em;
-    height: 1em;
-    margin-right: 0.5em;
-    margin-bottom: 0.1em;
-    fill: currentColor;
-    stroke: currentColor;
-  }
-
-  &__text {
-    font-size: 95%;
+    margin-right: 0.375em;
+    margin-bottom: 1px;
   }
 }
