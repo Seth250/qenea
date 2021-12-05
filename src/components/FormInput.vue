@@ -1,15 +1,13 @@
 <template>
-  <div class="form__input-container">
-    <input
-      :name="name"
-      :type="inputType"
-      :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
-      class="form__input"
-      :placeholder="placeholder"
-      :required="required"
-    >
-  </div>
+  <input
+    :name="name"
+    :type="inputType"
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)"
+    class="form__input"
+    :placeholder="placeholder"
+    :required="required"
+  >
 </template>
 
 <script>
