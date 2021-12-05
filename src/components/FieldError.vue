@@ -1,5 +1,5 @@
 <template>
-  <ul v-if="errors && errors.length" class="form__error-list">
+  <ul class="form__error-list">
     <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
   </ul>
 </template>
@@ -10,7 +10,8 @@ export default {
   props: {
     errors: {
       type: Array,
-      required: false
+      required: false,
+      validators: errors => errors && errors.length
     }
   }
 }

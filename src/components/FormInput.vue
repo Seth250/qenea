@@ -4,13 +4,15 @@
     :type="inputType"
     :value="modelValue"
     @input="$emit('update:modelValue', $event.target.value)"
-    class="form__input"
+    :class="['form__input', { 'form__input--error': hasError }]"
     :placeholder="placeholder"
-    :required="required"
   >
+  <FieldError v-if="hasError" :errors="errors" />
 </template>
 
 <script>
+import FieldError from './FieldError.vue'
+
 export default {
   name: 'FormInput',
   props: {
@@ -33,6 +35,18 @@ export default {
     required: {
       type: Boolean,
       default: false
+    },
+    errors: {
+      type: [Array, undefined],
+      required: false
+    }
+  },
+  components: {
+    FieldError
+  },
+  computed: {
+    hasError () {
+      return this.errors && this.errors.length
     }
   }
 }
