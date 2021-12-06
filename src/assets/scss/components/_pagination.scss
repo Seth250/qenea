@@ -1,0 +1,45 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__link {
+    color: $pry-blue;
+    border: 1px solid lightgrey;
+    padding: 0.375em 0.6em;
+    border-radius: 0.35em;
+    background-color: $pry-white;
+    transition: color 0.25s ease-in, background-color 0.25s ease-in;
+
+    // alternative for flex/grid gap
+    &:not(:last-child) {
+      margin-right: 0.75em;
+    }
+
+    &:hover {
+      color: $sec-white;
+      background-color: $pry-blue;
+    }
+
+    &--active {
+      color: $pry-white;
+      background-color: $active-blue;
+      border-color: transparent;
+      font-weight: 500;
+      pointer-events: none;
+    }
+
+    &--lg {
+      @include flex-center;
+
+      > span {
+        margin: 0 0.2em;
+      }
+
+      > svg {
+        width: 0.75em;
+        height: 1.25em;
+      }
+    }
+  }
+}
