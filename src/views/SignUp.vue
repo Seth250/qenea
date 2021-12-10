@@ -42,7 +42,14 @@
       <FormRow>
         <template #label>Confirm Password</template>
         <template #input>
-          <FormInput name="password2" input-type="password" v-model="formData.password2" :errors="formErrors.password" required />
+          <FormInput
+            name="password2"
+            input-type="password"
+            v-model="formData.password2"
+            :errors="formErrors.password"
+            @keyup="debounce(checkPasswordFields)"
+            required
+          />
         </template>
       </FormRow>
     </template>
@@ -60,6 +67,7 @@ import BaseForm from '@/components/BaseForm.vue'
 import FormRow from '@/components/FormRow.vue'
 import FormInput from '@/components/FormInput.vue'
 import { mapActions } from 'vuex'
+import _ from 'lodash'
 
 export default {
   name: 'Login',
@@ -78,25 +86,40 @@ export default {
         password: '',
         password2: ''
       },
-      formErrors: {}
+      formErrors: {
+        first_name: [],
+        last_name: [],
+        email: [],
+        username: [],
+        password: []
+      }
     }
   },
   methods: {
     ...mapActions(['registerUser']),
     async createUser () {
       try {
-        if (this.formData.password !== this.formData.password2) {
-          this.formErrors.password = ['The two password fields must match.']
-          return
-        }
-        await this.registerUser(this.formData)
-        this.$router.push({ name: 'Login' })
+        this.checkPasswordFields()
+        // await this.registerUser(this.formData)
+        // route props are in params object
+        this.$router.push({
+          name: 'Login',
+          params: { text: 'Account has been created successfully. Login to continue.' }
+        })
       } catch (err) {
         if (err.response) {
-          this.formErrors = err.response.data
+          this.formErrors = { ...this.formErrors, ...err.response.data }
         }
       }
-    }
+    },
+    checkPasswordFields () {
+      if (this.formData.password !== this.formData.password2) {
+        this.formErrors.password = ['The two password fields don\'t match.']
+      } else {
+        this.formErrors.password = []
+      }
+    },
+    debounce: func => _.debounce(func, 250)()
   }
 }
 </script>
