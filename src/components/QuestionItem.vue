@@ -27,7 +27,7 @@
           <div></div>
           <div>
             <p>{{ askedBy }}</p>
-            <p>{{ Math.floor(Math.random() * 30) + 1 }} mins ago</p>
+            <p>{{ formattedDate }}</p>
           </div>
         </div>
       </div>
@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import { formatDate } from '@/utils'
+
 export default {
   name: 'QuestionItem',
   props: {
@@ -65,7 +67,16 @@ export default {
     },
     tags: {
       type: Array,
-      default: () => ['python', 'django', 'backend']
+      required: true
+    },
+    dateAsked: {
+      type: String,
+      required: true
+    }
+  },
+  computed: {
+    formattedDate () {
+      return formatDate(this.dateAsked)
     }
   }
 }
