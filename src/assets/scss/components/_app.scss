@@ -8,10 +8,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2em 0;
+  padding: 2.5em 0;
 }
 
-// correct approach for transitions is ease-in for exits and ease-out for entraces (seems odd, I know)
+// correct approach for transitions is ease-in for exits and ease-out for entraces (surprising, I know)
 .slide-enter-active {
   transition: all 0.25s ease-out;
 }
