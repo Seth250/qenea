@@ -6,7 +6,8 @@ const state = {
 }
 
 const getters = {
-  pageQuestions: state => state.questions
+  pageQuestions: state => state.questions,
+  totalQuestions: state => state.totalQuestions
 }
 
 const actions = {
