@@ -4,8 +4,10 @@
     :type="inputType"
     :value="modelValue"
     @input="$emit('update:modelValue', $event.target.value)"
+    @keyup="$emit('keyup', $event.target.value)"
     :class="['form__input', { 'form__input--error': hasError }]"
     :placeholder="placeholder"
+    :required="required"
   >
   <FieldError v-if="hasError" :errors="errors" />
 </template>
@@ -15,6 +17,7 @@ import FieldError from './FieldError.vue'
 
 export default {
   name: 'FormInput',
+  emits: ['keyup', 'update:modelValue'],
   props: {
     name: {
       type: String,
