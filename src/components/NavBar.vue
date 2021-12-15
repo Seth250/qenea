@@ -3,10 +3,10 @@
     <template v-if="isLoggedIn">
       <ul class="nav-bar__items">
         <li>
-          <router-link class="nav-bar__link" to="#">Home</router-link>
+          <router-link class="nav-bar__link" :to="{ name: 'Home' }">Home</router-link>
         </li>
         <li>
-          <router-link class="nav-bar__link" to="#">Blog</router-link>
+          <a class="nav-bar__link" @click="logout">Logout</a>
         </li>
       </ul>
       <div class="nav-bar__user">
@@ -28,10 +28,17 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'NavBar',
-  computed: mapGetters(['isLoggedIn'])
+  computed: mapGetters(['isLoggedIn']),
+  methods: {
+    ...mapActions(['logoutUser']),
+    async logout () {
+      await this.logoutUser()
+      this.$router.push({ name: 'Login' })
+    }
+  }
 }
 </script>
